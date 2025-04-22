@@ -1,19 +1,34 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Bus from '../../public/assets/bus.png'; 
-
+import axios from 'axios';
 const LiveBusTracking = () => {
-    const busLocations = [
-        { id: 1, lat: 6.9271, lng: 79.8612, title: "Bus 101" },
-        { id: 2, lat: 6.9330, lng: 79.8500, title: "Bus 102" },
-        // add more dynamically fetched locations
-      ];
+
+  const [busData, setBusData] = useState([]);
+
+  useEffect(() => {
+    const fetchBusLocation = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/bus-locations');
+        setBusData(res.data);
+        console.log(busData)
+        
+      } catch (error) {
+        console.error('Error fetching bus data:', error);
+      }
+    };
+
+    fetchBusLocation();
+
+    const interval = setInterval(fetchBusLocation, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
       const busIcon = new L.Icon({
         iconUrl: Bus,
-        iconSize: [40, 40], // adjust as needed
+        iconSize: [40, 40], 
         iconAnchor: [15, 30],
         popupAnchor: [0, -30],
       });
@@ -26,7 +41,7 @@ const LiveBusTracking = () => {
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {busLocations.map(bus => (
+          {busData.map(bus => (
             <Marker key={bus.id} position={[bus.lat, bus.lng]} icon={busIcon}>
               <Popup>{bus.title}</Popup>
             </Marker>
