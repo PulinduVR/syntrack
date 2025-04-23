@@ -16,7 +16,7 @@ import {
   Users,
   Star,
   Route,
-} from "lucide-react"
+} from "lucide-react";
 
 const SideBar = () => {
   const { logout } = useAuth();
@@ -60,7 +60,7 @@ const SideBar = () => {
             <User className="h-5 w-5" />
             <span>Bus Owners</span>
           </a>
-          <a href="/busses" className="flex items-center gap-2 mb-2">
+          <a href="/bus-list" className="flex items-center gap-2 mb-2">
             <Bus className="h-5 w-5" />
             <span>Busses</span>
           </a>

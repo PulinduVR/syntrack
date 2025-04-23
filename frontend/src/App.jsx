@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 import Alerts from './pages/Alerts';
+import BusOwners from './pages/BusOwners';
+import BusList from './pages/BusList';
 import './App.css'
 
 function App() {
@@ -26,6 +28,14 @@ function App() {
             <Route path="/alerts" element={
                 <ProtectedRoute allowedRole="gov-official">
                   <Alerts />
+                </ProtectedRoute>} />
+            <Route path="/bus-owners" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <BusOwners />
+                </ProtectedRoute>} />
+            <Route path="/bus-list" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <BusList />
                 </ProtectedRoute>} />
             <Route path="*" element={<Login />} />
         </Routes>
