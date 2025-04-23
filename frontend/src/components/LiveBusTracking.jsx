@@ -11,8 +11,8 @@ const LiveBusTracking = () => {
   useEffect(() => {
     const fetchBusLocation = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/bus-locations');
-        setBusData(res.data);
+        const res = await axios.get('http://localhost:5000/bus/bus-locations');
+        setBusData(res.data.data);
         console.log(busData)
         
       } catch (error) {

@@ -13,20 +13,34 @@ export const getBusLocations = async (req, res) => {
     }
 }
 
+
 export const addBusLocation = async (req, res) => {
-    const { id, lat, lng, title, speed } = req.body;
-    try {
-        const locationData = {
-            id,
-            lat,
-            lng,
-            title,
-            speed
-        };
-        await db.collection("bus").doc(id).set(locationData);
-        res.status(201).json({ success: true, message: "Bus location added successfully" });
-    } catch (error) {
-        console.error("Error adding bus location:", error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+    const busLocations = req.body;
+  
+    if (!Array.isArray(busLocations)) {
+      return res.status(400).json({ success: false, message: "Expected an array of bus location objects" });
     }
-}
+  
+    try {
+      const batch = db.batch();
+  
+      busLocations.forEach((bus) => {
+        const { id, lat, lng, title, speed } = bus;
+  
+        if (!id || lat === undefined || lng === undefined || !title || speed === undefined) {
+          throw new Error(`Missing required fields for bus ID: ${id}`);
+        }
+  
+        const busRef = db.collection("bus").doc(id.toString());
+        const locationData = { id, lat, lng, title, speed };
+        batch.set(busRef, locationData);
+      });
+  
+      await batch.commit();
+  
+      res.status(201).json({ success: true, message: "Bus locations added successfully" });
+    } catch (error) {
+      console.error("Error adding bus locations:", error);
+      res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+    }
+  };
