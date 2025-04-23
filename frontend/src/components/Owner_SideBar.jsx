@@ -13,12 +13,25 @@ import {
     Users,
     Star,
     Route,
-  } from "lucide-react"
+  } from "lucide-react";
+  import { useAuth } from '../Auth';
+  import { useNavigate } from 'react-router-dom';
 
 const Owner_SideBar = () => {
+
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   return (
     <div className="w-64 h-full bg-gray-900 text-white fixed p-5 space-y-6">
-    <h2 className="text-2xl font-bold">BusMonitor</h2>
+    {/* <h2 className="text-2xl font-bold">BusMonitor</h2> */}
+    <div>
+        <img src='assets/syntech.png' alt = 'Syntech Logo' />
+    </div>
     <nav className="space-y-2">
         <div className='mb-10'>
             <h3 className="text-sm text-gray-500 mb-5">Main</h3>
@@ -65,6 +78,16 @@ const Owner_SideBar = () => {
                 <span>Ratings & Feedback</span>
             </a>
         </div>
+        <div className='pt-5 border-t border-gray-700'>
+                  <a href="/account" className="flex items-center gap-2 mb-2">
+                    <Settings className="h-5 w-5" />
+                    <span>My Account</span>
+                  </a>
+                  <button onClick={handleLogout} className="flex items-center gap-2 text-red-400 hover:text-red-600">
+                    <LogOut className="h-5 w-5" />
+                    <span>Logout</span>
+                  </button>
+                </div>
     </nav>
   </div>
   )

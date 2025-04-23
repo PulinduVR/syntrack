@@ -3,8 +3,13 @@ import Card from "../components/Card";
 //import { Button } from "@/components/ui/button";
 import { Bell, CalendarDays, BusFront } from "lucide-react";
 import Owner_SideBar from "../components/Owner_SideBar";
+import { jwtDecode } from "jwt-decode";
 
 const Dashboard = () => {
+
+  const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+
   return (
     <div className="flex">
       <Owner_SideBar />
@@ -12,7 +17,7 @@ const Dashboard = () => {
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Welcome, Samantha Perera!</h1>
+          <h1 className="text-2xl font-bold">Welcome, {decoded.name}</h1>
           <p className="text-sm text-gray-500">
             You've been with us for 3 years, 1 month. Here's an overview of your bus operations.
           </p>

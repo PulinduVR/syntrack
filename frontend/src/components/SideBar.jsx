@@ -29,7 +29,10 @@ const SideBar = () => {
 
   return (
     <div className="w-64 h-full bg-gray-900 text-white fixed p-5 space-y-6">
-      <h2 className="text-2xl font-bold">BusMonitor</h2>
+      {/* <h2 className="text-2xl font-bold">BusMonitor</h2> */}
+      <div>
+        <img src='assets/syntech.png' alt = 'Syntech Logo' />
+      </div>
       <nav className="space-y-2">
         <div className='mb-10'>
           <h3 className="text-sm text-gray-500 mb-5">Main</h3>

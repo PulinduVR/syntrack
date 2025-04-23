@@ -22,7 +22,7 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid Credentials" });
         }
         const user = snapshot.docs[0].data();
-        const token = jwt.sign({ id: user.username, role: collectionName }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
+        const token = jwt.sign({ id: user.username, role: collectionName, name: user.name }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
 
         return res.status(200).json({ success: true, message: "Login Successful", token });
     } catch(error) {
