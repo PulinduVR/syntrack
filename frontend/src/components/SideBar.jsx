@@ -62,9 +62,9 @@ const SideBar = () => {
           </a>
           <a href="/bus-list" className="flex items-center gap-2 mb-2">
             <Bus className="h-5 w-5" />
-            <span>Busses</span>
+            <span>Buses</span>
           </a>
-          <a href="/drivers-conductors" className="flex items-center gap-2 mb-2">
+          <a href="/staff" className="flex items-center gap-2 mb-2">
             <Users className="h-5 w-5" />
             <span>Drivers & Conductors</span>
           </a>

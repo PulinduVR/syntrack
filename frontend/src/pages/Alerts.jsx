@@ -245,7 +245,7 @@ const Alerts = () => {
         {filteredAlerts.map((alert) => (
           <div
             key={alert.id}
-            className="bg-white border rounded-lg p-4 shadow-sm"
+            className="bg-white border-gray-500 rounded-lg p-4 shadow-sm"
           >
             <div className="flex items-start">
               <div className="h-12 w-12 flex items-center justify-center bg-red-50 rounded-full mr-4">

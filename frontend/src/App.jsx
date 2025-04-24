@@ -8,6 +8,8 @@ import OwnerDashboard from './pages/OwnerDashboard';
 import Alerts from './pages/Alerts';
 import BusOwners from './pages/BusOwners';
 import BusList from './pages/BusList';
+import StaffList from './pages/StaffList';
+import StaffDetails from './components/StaffDetails';
 import './App.css'
 
 function App() {
@@ -36,6 +38,14 @@ function App() {
             <Route path="/bus-list" element={
                 <ProtectedRoute allowedRole="gov-official">
                   <BusList />
+                </ProtectedRoute>} />
+            <Route path="/staff" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <StaffList />
+                </ProtectedRoute>} />
+            <Route path="/staff/:id" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <StaffDetails />
                 </ProtectedRoute>} />
             <Route path="*" element={<Login />} />
         </Routes>

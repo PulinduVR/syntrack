@@ -60,7 +60,6 @@ const BusList = () => {
       ];
 
       const filteredBuses = buses.filter(bus => {
-        // Filter based on tab
         if (activeTab === 'Active' && bus.status !== 'Active') return false;
         if (activeTab === 'Maintenance' && bus.status !== 'Maintenance') return false;
         if (activeTab === 'Inactive' && bus.status !== 'Inactive') return false;
