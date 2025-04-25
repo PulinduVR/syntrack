@@ -10,6 +10,7 @@ import BusOwners from './pages/BusOwners';
 import BusList from './pages/BusList';
 import StaffList from './pages/StaffList';
 import StaffDetails from './components/StaffDetails';
+import RoutesView from './pages/RoutesView';
 import './App.css'
 
 function App() {
@@ -46,6 +47,10 @@ function App() {
             <Route path="/staff/:id" element={
                 <ProtectedRoute allowedRole="gov-official">
                   <StaffDetails />
+                </ProtectedRoute>} />
+            <Route path="/routes" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <RoutesView />
                 </ProtectedRoute>} />
             <Route path="*" element={<Login />} />
         </Routes>

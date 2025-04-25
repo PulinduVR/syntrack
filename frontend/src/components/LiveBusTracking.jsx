@@ -13,6 +13,7 @@ const center = {
   lng: 79.8612
 };
 
+
 const LiveBusTracking = () => {
 
   const [busData, setBusData] = useState([]);
@@ -32,7 +33,7 @@ const LiveBusTracking = () => {
 
     fetchBusLocation();
 
-    const interval = setInterval(fetchBusLocation, 1000);
+    const interval = setInterval(fetchBusLocation, 10000);
     return () => clearInterval(interval);
   }, []);
 
