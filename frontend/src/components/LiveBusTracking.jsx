@@ -1,12 +1,22 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import React, { useEffect, useState } from 'react'
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 import Bus from '../../public/assets/bus.png'; 
 import axios from 'axios';
+
+const containerStyle = {
+  width: '100%',
+  height: '400px'
+};
+
+const center = {
+  lat: 6.9271,
+  lng: 79.8612
+};
+
 const LiveBusTracking = () => {
 
   const [busData, setBusData] = useState([]);
+  const [activeMarker, setActiveMarker] = useState(null);
 
   useEffect(() => {
     const fetchBusLocation = async () => {
@@ -22,32 +32,38 @@ const LiveBusTracking = () => {
 
     fetchBusLocation();
 
-    const interval = setInterval(fetchBusLocation, 5000);
+    const interval = setInterval(fetchBusLocation, 1000);
     return () => clearInterval(interval);
   }, []);
 
-      const busIcon = new L.Icon({
-        iconUrl: Bus,
-        iconSize: [40, 40], 
-        iconAnchor: [15, 30],
-        popupAnchor: [0, -30],
-      });
+  const BusIcon = Bus; 
+
   return (
     <div className="bg-white p-4 rounded-2xl shadow-sm mt-4">
       <h2 className="text-xl font-bold mb-2">Live Bus Tracking</h2>
       <p className="text-sm text-gray-500 mb-3">Real-time location of all buses currently in operation.</p>
-      <div className="h-96 w-full rounded-lg overflow-hidden">
-        <MapContainer center={[6.9271, 79.8612]} zoom={12} scrollWheelZoom={false} className="h-full w-full z-0">
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {busData.map(bus => (
-            <Marker key={bus.id} position={[bus.lat, bus.lng]} icon={busIcon}>
-              <Popup>{bus.title}</Popup>
+      
+      <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
+          {busData.map((bus) => (
+            <Marker
+              key={bus.id}
+              position={{ lat: bus.lat, lng: bus.lng }}
+              icon={{
+                url: BusIcon,
+                scaledSize: new window.google.maps.Size(40, 40)
+              }}
+              onClick={() => setActiveMarker(bus.id)}
+            >
+              {activeMarker === bus.id && (
+                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                  <div>{bus.title}</div>
+                </InfoWindow>
+              )}
             </Marker>
           ))}
-        </MapContainer>
-      </div>
+        </GoogleMap>
+      </LoadScript>
     </div>
   )
 }
