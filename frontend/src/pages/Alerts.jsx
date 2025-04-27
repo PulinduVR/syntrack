@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import SideBar from '../components/SideBar';
+import SideBar from '../components/Sidebar';
 import Card from '../components/Card';
 import { Bus, Map, AlertCircle, TrendingUp, AlertTriangle, TrafficCone, CloudAlert, Users, AlertOctagon, Info, X } from 'lucide-react'
 import LiveBusTracking from '../components/LiveBusTracking';

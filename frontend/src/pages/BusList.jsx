@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import SideBar from '../components/SideBar';
+import SideBar from '../components/Sidebar';
+import Bus4 from '../../public/assets/bus4.jpg';
+import Bus2 from '../../public/assets/bus2.jpeg';
+import Bus3 from '../../public/assets/bus3.jpg';
 
 const BusList = () => {
     const navigate = useNavigate();
@@ -9,14 +12,14 @@ const BusList = () => {
 
     const buses = [
         {
-          id: 'NB-1234',
+          id: 'ND-5110',
           status: 'Active',
           model: 'Ashok Leyland Viking',
           type: 'AC',
           seats: 52,
           route: 'Colombo - Kandy',
           owner: 'Samantha Perera',
-          image: '/placeholder',
+          image: Bus4,
           garageNumber: 'G-123',
           manufactured: '2018',
           registered: '2019',
@@ -40,22 +43,22 @@ const BusList = () => {
         {
           id: 'WP-5678',
           status: 'Active',
-          model: 'Tata Marcopolo',
+          model: 'Ashok Leyland Viking',
           type: 'Non-AC',
           seats: 45,
-          route: 'Colombo - Galle',
-          owner: 'Samantha Perera',
-          image: '/placeholder'
+          route: 'Anuradhapura - Kanduruwela',
+          owner: 'Sri Lanka Transport Board',
+          image: Bus3
         },
         {
-          id: 'SP-9012',
+          id: 'ND-5415',
           status: 'Maintenance',
           model: 'Isuzu Journey-K',
           type: 'AC',
           seats: 48,
           route: 'Colombo - Jaffna',
           owner: 'Samantha Perera',
-          image: '/placeholder'
+          image: Bus2
         }
       ];
 
@@ -137,15 +140,15 @@ const BusList = () => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border">
+      <div className="bg-white p-6 rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold mb-2">Registered Buses</h2>
         <p className="text-gray-600 mb-6">A list of all buses registered in the system. Click on a bus to view more details.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredBuses.map((bus) => (
-            <div key={bus.id} className="border rounded-lg overflow-hidden bg-gray-50">
+            <div key={bus.id} className="border-gray-500 shadow-lg rounded-lg overflow-hidden bg-gray-50">
               <div className="h-48 bg-gray-200 flex items-center justify-center">
-                <img src="/api/placeholder/400/320" alt="Bus" className="w-full h-full object-cover" />
+                <img src={bus.image} alt="Bus" className="w-full h-full object-cover" />
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-center mb-2">

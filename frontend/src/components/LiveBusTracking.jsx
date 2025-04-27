@@ -58,7 +58,10 @@ const LiveBusTracking = () => {
             >
               {activeMarker === bus.id && (
                 <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                  <div>{bus.title}</div>
+                  <div>
+                    <p>Bus : {bus.title}</p>
+                    <p>Speed : {bus.speed}</p>
+                  </div>
                 </InfoWindow>
               )}
             </Marker>

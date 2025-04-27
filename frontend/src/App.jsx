@@ -11,6 +11,8 @@ import BusList from './pages/BusList';
 import StaffList from './pages/StaffList';
 import StaffDetails from './components/StaffDetails';
 import RoutesView from './pages/RoutesView';
+import Schedules from './pages/Schedules';
+import Reports from './pages/Reports';
 import './App.css'
 
 function App() {
@@ -51,6 +53,14 @@ function App() {
             <Route path="/routes" element={
                 <ProtectedRoute allowedRole="gov-official">
                   <RoutesView />
+                </ProtectedRoute>} />
+            <Route path="/schedules" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <Schedules />
+                </ProtectedRoute>} />
+            <Route path="/reports" element={
+                <ProtectedRoute allowedRole="gov-official">
+                  <Reports />
                 </ProtectedRoute>} />
             <Route path="*" element={<Login />} />
         </Routes>

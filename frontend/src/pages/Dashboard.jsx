@@ -1,6 +1,6 @@
 import React from 'react'
-import SideBar from '../components/SideBar.jsx'
-import Card from '../components/Card.jsx'
+import SideBar from '../components/Sidebar.jsx';
+import Card from '../components/Card.jsx';
 import LiveBusTracking from '../components/LiveBusTracking.jsx'
 import { Bus, MapPin, AlertCircle, TrendingUp } from 'lucide-react'
 

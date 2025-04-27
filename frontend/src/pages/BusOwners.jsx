@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { User, Calendar, UserCircle, MapPin, Phone, Mail, Bus, ChevronLeft, Edit, PlusCircle, Users } from "lucide-react";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/Sidebar";
 
 const BusOwners = () => {
   const [activeTab, setActiveTab] = useState("All Owners");
@@ -18,7 +18,7 @@ const BusOwners = () => {
       joinedDate: "Mar 15, 2020",
       busesOwned: 5,
       age: "38 years",
-      gender: "Female",
+      gender: "Male",
       address: "123 Main Street, Colombo 05",
       phone: "+94 77 123 4567",
       email: "samantha.perera@example.com",
@@ -133,7 +133,7 @@ const BusOwners = () => {
         <div className="flex">
             <SideBar />
         <main className="ml-64 p-6 w-full">
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl p-4">
         <div className="flex justify-between items-center mb-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800">Bus Owners</h1>
@@ -175,7 +175,7 @@ const BusOwners = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow-xl p-6">
           <h2 className="text-xl font-bold mb-2">Registered Bus Owners</h2>
           <p className="text-gray-600 mb-6">
             A list of all bus owners registered in the system. Click on a bus owner to view more details.
@@ -183,7 +183,7 @@ const BusOwners = () => {
 
           <div className="space-y-4">
             {filteredOwners.map((owner) => (
-              <div key={owner.id} className="border rounded-lg p-4">
+              <div key={owner.id} className="shadow-lg rounded-lg p-4">
                 <div className="flex items-center">
                   <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
                   <div className="flex-1">

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { GoogleMap, LoadScript, Polyline } from "@react-google-maps/api";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/Sidebar";
 import axios from "axios";
 
 const containerStyle = {

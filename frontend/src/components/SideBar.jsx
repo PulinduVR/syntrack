@@ -72,7 +72,7 @@ const SideBar = () => {
 
         <div className='mb-10'>
           <h3 className="text-sm text-gray-500 mb-5">Management</h3>
-          <a href="/schedule" className="flex items-center gap-2 mb-2">
+          <a href="/schedules" className="flex items-center gap-2 mb-2">
             <Clock className="h-5 w-5" />
             <span>Bus Schedules</span>
           </a>
